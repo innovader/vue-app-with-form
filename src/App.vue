@@ -4,8 +4,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-import VueAxios from 'vue-axios'
 // import NavigationMenu from './components/NavigationMenu.vue'
 import ContactForm from './components/ContactForm.vue'
 

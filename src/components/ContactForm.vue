@@ -31,16 +31,17 @@
     </div>
 
     <!-- Category -->
-    
-    <select v-model="form.category">
-      <option v-for="option in categoryOptions" :key="option.categoryId" :value="form.category">
+    <select v-model="form.category" @change="onChangeCategory($event)">
+      <option disabled value>Category</option>
+      <option v-for="option in categoryOptions" :key="option.categoryId" :value="option.name">
         {{ option.name }}
       </option>
     </select>
 
     <!-- Subcategory -->
     <select v-model="form.subcategory">
-      <option v-for="option in subcategoryOptions" :key="option.subCategoryId" :value="form.subcategory">
+      <option disabled value>Subcategory</option>
+      <option v-for="option in subcategoryOptions" :key="option.subCategoryId" :value="option?.name ? option.name : 'Subcategory'">
         {{ option.name }}
       </option>
     </select>
@@ -72,107 +73,29 @@
 </template>
 
 <script>
+import axios from 'axios'
 import useVuelidate from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
-// import categoryList from './categoryList'
 
 export default {
   name: 'ContactForm',
   props: {
-  //   categoryList: [
-  // {
-  // categoryId: 0,
-  // name: "All"
-  // },
-  // {
-  // categoryId: 1,
-  // name: "Books",
-  // subCategories: [
-  //   {
-  //   subCategoryId: 1,
-  //   name: "Hardcover"
-  //   },
-  //   {
-  //   subCategoryId: 2,
-  //   name: "Paperback"
-  //   },
-  //   {
-  //   subCategoryId: 3,
-  //   name: "Electronic"
-  //   }
-  // ]
-  // },
-  // {
-  // categoryId: 2,
-  // name: "Movies",
-  // subCategories: [
-  //   {
-  //   subCategoryId: 4,
-  //   name: "DVD"
-  //   },
-  //   {
-  //   subCategoryId: 5,
-  //   name: "BluRay"
-  //   },
-  //   {
-  //   subCategoryId: 6,
-  //   name: "Download"
-  //   }
-  // ]
-  // },
-  // {
-  // categoryId: 3,
-  // name: "Games",
-  // subCategories: [
-  //   {
-  //   subCategoryId: 7,
-  //   name: "XBox"
-  //   },
-  //   {
-  //   subCategoryId: 8,
-  //   name: "PC"
-  //   }
-  // ]
-  // },
-  // {
-  // categoryId: 4,
-  // name: "Music"
-  // }
-  //     ],
   },
   setup () {
     return { v$: useVuelidate() }
   },
 
-  data() {
+  data () {
     return {
-      categoryList: null,
-      categoryOptions: [
-          {
-            categoryId: 0,
-            name: "All"
-          }
-        ],
-      subcategoryOptions: [
-        {
-          subCategoryId: 1,
-          name: "Hardcover"
-          },
-          {
-          subCategoryId: 2,
-          name: "Paperback"
-          },
-          {
-          subCategoryId: 3,
-          name: "Electronic"
-        }
-      ],
+      categoryListResponse: null,
+      categoryOptions: null,
+      subcategoryOptions: null,
       form: {
         name: '',
         email: '',
         phone: '',
-        category: 'Category',
-        subcategory: 'Subcategory',
+        category: '',
+        subcategory: '',
         message: '',
         checkedOptions: []
       }
@@ -181,7 +104,7 @@ export default {
   mounted () {
     axios
       .get('https://run.mocky.io/v3/0b8fbded-6ce4-4cb2-bf2f-d2c39207506b')
-      .then(response => (this.categoryList = response))
+      .then(response => (this.categoryListResponse = response) && (this.categoryOptions = response.data))
   },
   validations() {
     return {
@@ -192,6 +115,15 @@ export default {
       },
     }
   },
+  methods: {
+    onChangeCategory(event) {
+      let selectedCategory = this.categoryListResponse.data.filter(
+        category => category.name === event.target.value
+      )
+      let selectedSubcategories = selectedCategory[0].subCategories
+      this.subcategoryOptions = selectedSubcategories
+    }
+  }
 }
 </script>
 
