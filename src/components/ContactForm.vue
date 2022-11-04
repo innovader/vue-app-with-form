@@ -47,7 +47,6 @@
           type="number"
           v-model="v$.form.phone.$model"
         >
-        <div class="pre-icon os-icon os-icon-user-male-circle"></div>
         <!-- error message -->
         <div
           class="input-errors"
@@ -247,6 +246,7 @@ textarea {
   font-size: 16px;
   color: #000000;
   border: 1px solid #000000;
+  padding-top: 19px;
 }
 
 .input-desktop {
@@ -332,6 +332,10 @@ button {
   font-weight: 800;
 }
 
+button:disabled {
+  background-color: grey;
+}
+
 .button-mobile {
   width: 312px;
   height: 48px;
@@ -340,6 +344,17 @@ button {
   opacity: 1;
   font-size: 18px;
   font-weight: 800;
+}
+
+.input-name, .input-errors {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.error-msg {
+  position: relative;
+  bottom:32px;
+  right: 24px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -359,30 +374,48 @@ button {
 textarea::-webkit-input-placeholder {
   color: #000000;
   padding-top: 19px;
-  font-family: 'Montserrat', sans-serif;
 }
 
 textarea:-moz-placeholder { /* Firefox 18- */
   color: #000000;
-  padding-top: 19px;
-  font-family: 'Montserrat', sans-serif;
 }
 
 textarea::-moz-placeholder {  /* Firefox 19+ */
   color: #000000;
-  padding-top: 19px;
-  font-family: 'Montserrat', sans-serif;
 }
 
 textarea:-ms-input-placeholder {
   color: #000000;
-  padding-top: 19px;
-  font-family: 'Montserrat', sans-serif;
 }
 
 textarea::placeholder {
   color: #000000;
-  padding-top: 19px;
-  font-family: 'Montserrat', sans-serif;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:focus {
+    outline: none !important;
+    border:1px solid #4B00FF;
+  }
+
+textarea:focus {
+  outline: none !important;
+  border:1px solid #4B00FF;
+}
+
+select:focus {
+  outline: none !important;
+  border:1px solid #4B00FF;
 }
 </style>
