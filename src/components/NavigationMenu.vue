@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      isMobileMenuShowing: true,
+      isMobileMenuShowing: false,
       items: [
         { title: 'Main Page' },
         { title: 'Page Two' },
@@ -93,6 +93,7 @@ export default {
 
 .desktop {
   justify-content: center;
+  height: 64px;
 }
 
 .navigation {
@@ -136,6 +137,7 @@ ul {
   list-style: none;
   padding-left: 0;
   color: #000000;
+  text-align: center;
 }
 
 </style>

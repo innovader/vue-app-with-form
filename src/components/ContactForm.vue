@@ -150,7 +150,12 @@ export default {
     // get data on load and store it in categoryListResponse, as well as populate categories(aka categoryOptions).
     axios
       .get('https://run.mocky.io/v3/0b8fbded-6ce4-4cb2-bf2f-d2c39207506b')
-      .then(response => (this.categoryListResponse = response) && (this.categoryOptions = response.data))
+      .then((response) => {
+        (this.categoryListResponse = response) && (this.categoryOptions = response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   },
 
   validations() {
