@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .slide-one {
   width: 100%;
   height: calc(100vh - 64px);

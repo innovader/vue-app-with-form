@@ -1,23 +1,23 @@
 <template>
   <NavigationMenu :showMobile="showMobile"/>
   <!-- <CarouselShow :showMobile="showMobile" /> -->
-  <MainContent :showMobile="showMobile" />
-  <!-- <ContactForm :showMobile="showMobile" /> -->
+  <!-- <MainContent :showMobile="showMobile" /> -->
+  <MapAndContact :showMobile="showMobile" />
 </template>
 
 <script>
 import NavigationMenu from './components/NavigationMenu.vue'
 //import CarouselShow from './components/CarouselShow.vue'
-import MainContent from './components/MainContent.vue'
-// import ContactForm from './components/ContactForm.vue'
+//import MainContent from './components/MainContent.vue'
+import MapAndContact from './components/MapAndContact.vue'
 
 export default {
   name: 'App',
   components: {
     NavigationMenu,
     //CarouselShow,
-    MainContent,
-    // ContactForm
+    //MainContent,
+    MapAndContact,
   },
   data() {
       return {
