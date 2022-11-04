@@ -1,19 +1,22 @@
 <template>
   <NavigationMenu :showMobile="showMobile"/>
-  <CarouselShow :showMobile="showMobile"/>
-  <!-- <ContactForm /> -->
+  <!-- <CarouselShow :showMobile="showMobile" /> -->
+  <MainContent :showMobile="showMobile" />
+  <!-- <ContactForm :showMobile="showMobile" /> -->
 </template>
 
 <script>
 import NavigationMenu from './components/NavigationMenu.vue'
-import CarouselShow from './components/CarouselShow.vue'
+//import CarouselShow from './components/CarouselShow.vue'
+import MainContent from './components/MainContent.vue'
 // import ContactForm from './components/ContactForm.vue'
 
 export default {
   name: 'App',
   components: {
     NavigationMenu,
-    CarouselShow,
+    //CarouselShow,
+    MainContent,
     // ContactForm
   },
   data() {
@@ -39,7 +42,7 @@ export default {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: blue;
+  color: #000000;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

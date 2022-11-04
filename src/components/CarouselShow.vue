@@ -17,11 +17,6 @@ export default {
   props: {
     showMobile: Boolean,
   },
-  data() {
-      return {
-          
-      }
-  },
 }
 </script>
 
